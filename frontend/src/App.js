@@ -1,29 +1,27 @@
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import About from './components/About';
-
-import Login from "./components/Login";
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import About from "./components/About";
+import Missing from "./components/Missing";
+import Found from "./components/Found";
+import Volunteer from "./components/Volunteer";
+// import Login from "./components/Login";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    setIsAuthenticated(!!user);
-  }, []);
-
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
-          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/missing" element={<Missing />} />
+          <Route path="/found" element={<Found />} />
+          <Route path="/volunteer" element={<Volunteer />} />
         </Routes>
       </div>
+      <Footer/>
     </Router>
   );
 }

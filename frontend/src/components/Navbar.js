@@ -1,14 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setIsAuthenticated(false);
-    navigate("/login");
-  };
-
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -20,23 +12,24 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {isAuthenticated && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/about">About</Link>
-                </li>
-              </>
-            )}
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/found">Report Found</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/missing">Register Missing</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/volunteer">Volunteer</Link>
+            </li>
           </ul>
           <div>
-            {isAuthenticated ? (
-              <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-            ) : (
-              <Link className="btn btn-primary" to="/login">Login</Link>
-            )}
+            <Link className="btn btn-primary" to="/login">Login</Link>
           </div>
         </div>
       </div>
